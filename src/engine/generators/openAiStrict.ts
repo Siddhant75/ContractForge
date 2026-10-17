@@ -1,6 +1,7 @@
 import { AstNode } from '../../types/ast';
 
 interface OpenAiSchemaObject {
+  [key: string]: unknown;
   type: string;
   properties?: Record<string, unknown>;
   required?: string[];
