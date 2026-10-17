@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContractForge — Technical Spec Companion</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #090a0f;
+      --card-bg: #11131c;
+      --border: #23283b;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --primary: #6366f1;
+      --accent: #10b981;
+      --danger: #f43f5e;
+      --sky: #38bdf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 960px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 2rem; }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      margin-bottom: 0.75rem;
+    }
+    h1 { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card h2 {
+      font-size: 1.3rem;
+      color: #fff;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .diagram-box {
+      background: #0d1117;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+      text-align: center;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media(max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+    .module-box {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .module-box h3 { font-size: 1rem; color: var(--sky); margin-bottom: 0.4rem; }
+    ul { padding-left: 1.25rem; font-size: 0.95rem; }
+    li { margin-bottom: 0.3rem; color: #cbd5e1; }
+    code { font-family: monospace; background: rgba(0,0,0,0.3); padding: 0.1rem 0.3rem; border-radius: 3px; color: #38bdf8; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Devpost Build With AI: Basics — Approved Spec</div>
+      <h1>ContractForge — Technical Architecture</h1>
+      <p style="color: var(--text-muted);">Decoupled Client-Side Engine Blueprint</p>
+    </header>
+
+    <div class="card">
+      <h2>📐 Internal Data Flow & Component Architecture</h2>
+      <div class="diagram-box">
+        <pre class="mermaid">
+        flowchart TD
+          subgraph Client UI
+            NAV[TopNav / Presets]
+            INPUT[InputStudio Editor]
+            STUDIO[ContractStudio Tabs]
+            DRAWER[ChaosRunnerDrawer]
+          end
+          
+          subgraph Pure Client-Side Engine
+            LEX[curlLexer & jsonParser]
+            INF[schemaInferrer & Semantic Regex]
+            GEN[Code Generators:\nTS / Zod / OpenAI / Claude]
+            FUZZ[chaosFuzzer & In-Memory Runner]
+          end
+
+          NAV -->|Dispatches Preset| INPUT
+          INPUT -->|Raw Text| LEX
+          LEX -->|Clean JS Object| INF
+          INF -->|AstNode Tree| GEN
+          INF -->|AstNode Tree| FUZZ
+          GEN -->|Rendered Code| STUDIO
+          FUZZ -->|Live safeParse Tests| DRAWER
+        </pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ Decoupled Modular Architecture</h2>
+      <div class="grid-2">
+        <div class="module-box">
+          <h3>1. Ingestion Engine</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"><code>src/engine/curlLexer.ts</code> & <code>jsonParser.ts</code></p>
+          <ul>
+            <li>Tokenizes shell commands into Method, URL, Query & Body</li>
+            <li>Sanitizes trailing commas & unquoted keys</li>
+            <li>Handles cURL GET requests via query params</li>
+          </ul>
+        </div>
+        <div class="module-box">
+          <h3>2. AST & Semantic Inferrer</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"><code>src/engine/schemaInferrer.ts</code></p>
+          <ul>
+            <li>Recursive type inference (objects, arrays, unions)</li>
+            <li>Regex heuristics: ISO dates, UUIDs, emails, URLs</li>
+            <li>Safety depth limit guard (20 levels max)</li>
+          </ul>
+        </div>
+        <div class="module-box">
+          <h3>3. Multi-Target Generators</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"><code>src/engine/generators/*</code></p>
+          <ul>
+            <li>TypeScript interfaces with optionality</li>
+            <li>Zod runtime validation schemas</li>
+            <li>OpenAI Strict tool specs (recursive <code>additionalProperties: false</code>)</li>
+            <li>Anthropic Claude tool definitions</li>
+          </ul>
+        </div>
+        <div class="module-box">
+          <h3>4. Chaos Fuzzer & Runner</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;"><code>src/engine/chaosFuzzer.ts</code></p>
+          <ul>
+            <li>Synthesizes valid happy-path payload</li>
+            <li>Fuzzes missing fields, type corruptions & boundary errors</li>
+            <li>Evaluates against live Zod schema in-memory</li>
+            <li>Zero network overhead, zero external dependencies</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>mermaid.initialize({ startOnLoad: true, theme: 'dark' });</script>
+</body>
+</html>
