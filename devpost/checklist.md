@@ -19,7 +19,7 @@ Build mode: fast
   Learner check: Open `http://localhost:5173`, paste JSON or use default preset, and verify syntax-highlighted TypeScript and Zod contracts appear instantly with 1-click copy.
   Commit: `feat(studio): scaffold project and implement core json-to-contract studio`
 
-- [ ] **2. The Unique Kernel: In-Browser Mock & Chaos Fuzzer Sandbox**
+- [x] **2. The Unique Kernel: In-Browser Mock & Chaos Fuzzer Sandbox**
   Becomes usable: Interactive Chaos Runner drawer integrated into the running studio. Synthesizes happy-path and 3 mutated edge-case payloads, validates live against the compiled Zod schema via `.safeParse()`, and renders simulated HTTP status badges (`200 OK` vs `422 Error`) with field-level diagnostic paths.
   Why now: The unique kernel comes early, not last. Verifies the core hackathon differentiator immediately once basic contracts render.
   PRD ref: `prd.md > 4. Interactive In-Browser Mock & Chaos Runner`, `scope.md > The Unique Kernel`
@@ -51,7 +51,7 @@ Build mode: fast
 
 ## Hands-on Checkpoints
 
-- [ ] Early usable behavior explored — Slice 2 completed (Unique Kernel live and interactive in the browser!)
+- [x] Early usable behavior explored — Slice 2 completed (Unique Kernel live and interactive in the browser!)
 - [ ] Final kick-the-tires exploration and feedback completed — Slice 4 completed (Full studio with resilient cURL and all presets)
 
 ## Final Review
