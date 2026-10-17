@@ -9,7 +9,7 @@ Build mode: fast
 
 ## Slices
 
-- [ ] **1. End-to-End Studio Bootstrap & Core Contract Pipeline (JSON Ingestion, TypeScript & Zod Generation)**
+- [x] **1. End-to-End Studio Bootstrap & Core Contract Pipeline (JSON Ingestion, TypeScript & Zod Generation)**
   Becomes usable: A running web studio at `http://localhost:5173` with Obsidian theme where pasting JSON or clicking the default Stripe preset immediately renders valid TypeScript interfaces and Zod schemas with 1-click copy.
   Why now: Proves the whole path end to end on the first slice — project scaffold, reactive split-pane UI, AST inference, and code generation — so every later slice has somewhere to land.
   PRD ref: `prd.md > The Core Journey` (steps 1-3), `prd.md > Screens and Layout`
