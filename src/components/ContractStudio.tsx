@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Copy, Check, Download, Layers } from 'lucide-react';
 
 export type OutputTab = 'typescript' | 'zod';
@@ -14,9 +14,12 @@ export const ContractStudio: React.FC<ContractStudioProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<OutputTab>('typescript');
   const [copied, setCopied] = useState(false);
+  const lineNumbersRef = useRef<HTMLDivElement>(null);
 
   const currentCode = activeTab === 'typescript' ? typescriptCode : zodCode;
   const fileName = activeTab === 'typescript' ? 'contracts.ts' : 'schema.zod.ts';
+  const lineCount = Math.max(currentCode.split('\n').length, 1);
+  const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1);
 
   const handleCopy = async () => {
     try {
@@ -97,10 +100,30 @@ export const ContractStudio: React.FC<ContractStudioProps> = ({
       </div>
 
       {/* Code Display Area */}
-      <div className="flex-1 p-4 font-mono text-[13px] leading-6 overflow-auto text-slate-200 bg-obsidian-950/30 selection:bg-indigo-500/30">
-        <pre className="whitespace-pre">
-          <code>{currentCode || '// Valid code will generate here automatically...'}</code>
-        </pre>
+      <div className="relative flex-1 flex overflow-hidden font-mono text-[13px]">
+        {/* Line Numbers */}
+        <div
+          ref={lineNumbersRef}
+          className="w-12 py-4 bg-obsidian-950/40 text-slate-600 text-right pr-3 select-none border-r border-obsidian-800/80 overflow-hidden shrink-0"
+        >
+          {lineNumbers.map(n => (
+            <div key={n} className="leading-6 text-[12px]">{n}</div>
+          ))}
+        </div>
+
+        {/* Code Content */}
+        <div
+          onScroll={(e) => {
+            if (lineNumbersRef.current) {
+              lineNumbersRef.current.scrollTop = e.currentTarget.scrollTop;
+            }
+          }}
+          className="flex-1 p-4 leading-6 overflow-auto text-slate-200 bg-obsidian-950/30 selection:bg-indigo-500/30"
+        >
+          <pre className="whitespace-pre">
+            <code>{currentCode || '// Valid code will generate here automatically...'}</code>
+          </pre>
+        </div>
       </div>
     </div>
   );

@@ -9,27 +9,26 @@ import { ContractStudio } from './components/ContractStudio';
 
 export function App() {
   const [rawInput, setRawInput] = useState<string>(STRIPE_PAYMENT_SAMPLE);
-  const [parseError, setParseError] = useState<string | null>(null);
 
   // Ingest and infer contracts reactively
-  const { typescriptCode, zodCode } = useMemo(() => {
+  const { typescriptCode, zodCode, parseError } = useMemo(() => {
     if (!rawInput.trim()) {
-      setParseError(null);
-      return { typescriptCode: '', zodCode: '' };
+      return { typescriptCode: '', zodCode: '', parseError: null };
     }
 
     try {
       const parsed = JSON.parse(rawInput);
-      setParseError(null);
       const ast = inferSchema(parsed, 'Root');
       const ts = generateTypeScript(ast, 'Root');
       const zod = generateZod(ast, 'Root');
-      return { typescriptCode: ts, zodCode: zod };
+      return { typescriptCode: ts, zodCode: zod, parseError: null };
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Invalid JSON format';
-      setParseError(msg);
-      // Retain existing contracts or return empty
-      return { typescriptCode: '// Fix JSON syntax error in editor...', zodCode: '// Fix JSON syntax error in editor...' };
+      return {
+        typescriptCode: '// Fix JSON syntax error in editor...',
+        zodCode: '// Fix JSON syntax error in editor...',
+        parseError: msg
+      };
     }
   }, [rawInput]);
 
@@ -37,21 +36,17 @@ export function App() {
     try {
       const parsed = JSON.parse(rawInput);
       setRawInput(JSON.stringify(parsed, null, 2));
-      setParseError(null);
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Cannot format invalid JSON';
-      setParseError(msg);
+    } catch {
+      // Retain current input if malformed
     }
   };
 
   const handleClear = () => {
     setRawInput('');
-    setParseError(null);
   };
 
   const handleLoadStripe = () => {
     setRawInput(STRIPE_PAYMENT_SAMPLE);
-    setParseError(null);
   };
 
   return (

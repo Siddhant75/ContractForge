@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Code, Trash2, Wand2, AlertCircle } from 'lucide-react';
 
 interface InputStudioProps {
@@ -16,8 +16,15 @@ export const InputStudio: React.FC<InputStudioProps> = ({
   onFormat,
   onClear
 }) => {
+  const lineNumbersRef = useRef<HTMLDivElement>(null);
   const lineCount = Math.max(value.split('\n').length, 1);
   const lineNumbers = Array.from({ length: lineCount }, (_, i) => i + 1);
+
+  const handleScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+    if (lineNumbersRef.current) {
+      lineNumbersRef.current.scrollTop = e.currentTarget.scrollTop;
+    }
+  };
 
   return (
     <div className="flex flex-col h-full bg-obsidian-900 border border-obsidian-700 rounded-xl overflow-hidden shadow-2xl">
@@ -64,7 +71,10 @@ export const InputStudio: React.FC<InputStudioProps> = ({
       {/* Editor Body */}
       <div className="relative flex-1 flex overflow-hidden font-mono text-sm">
         {/* Line Numbers */}
-        <div className="w-12 py-3 bg-obsidian-950/40 text-slate-600 text-right pr-3 select-none border-r border-obsidian-800/80 overflow-hidden">
+        <div
+          ref={lineNumbersRef}
+          className="w-12 py-3 bg-obsidian-950/40 text-slate-600 text-right pr-3 select-none border-r border-obsidian-800/80 overflow-hidden"
+        >
           {lineNumbers.map(n => (
             <div key={n} className="leading-6 text-[12px]">{n}</div>
           ))}
@@ -74,6 +84,7 @@ export const InputStudio: React.FC<InputStudioProps> = ({
         <textarea
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          onScroll={handleScroll}
           placeholder="// Paste JSON payload or choose a preset above..."
           spellCheck={false}
           className="flex-1 p-3 bg-transparent text-slate-200 placeholder-slate-600 resize-none outline-none leading-6 text-[13px] overflow-auto selection:bg-indigo-500/30 font-mono"

@@ -31,7 +31,10 @@ export function generateTypeScript(ast: AstNode, rootName = 'Root'): string {
         }
 
         lines.push('}');
-        extraInterfaces.push(lines.join('\n'));
+        const declaration = lines.join('\n');
+        if (!extraInterfaces.includes(declaration)) {
+          extraInterfaces.push(declaration);
+        }
         return interfaceName;
       }
     }
