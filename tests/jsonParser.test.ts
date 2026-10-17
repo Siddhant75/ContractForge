@@ -64,6 +64,12 @@ describe('jsonParser & Auto-Sanitizer', () => {
     });
   });
 
+  it('sanitizes json strings directly', () => {
+    const raw = "{ foo: 'bar', // comment\n }";
+    const cleaned = sanitizeJsonString(raw);
+    expect(cleaned).toContain('"foo": "bar"');
+  });
+
   it('handles empty string and completely unparseable garbage', () => {
     const emptyResult = parseJsonResilient('   ');
     expect(emptyResult.success).toBe(false);

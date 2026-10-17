@@ -95,6 +95,20 @@ export const ECOMMERCE_ORDER_SAMPLE = JSON.stringify({
   is_gift: false
 }, null, 2);
 
+export const CURL_STRIPE_SAMPLE = `curl -X POST "https://api.stripe.com/v1/payment_intents" \\
+  -H "Authorization: Bearer sk_test_51Mz93kd..." \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "amount": 4900,
+    "currency": "usd",
+    "description": "Enterprise API Subscription",
+    "customer": "cus_N7Wq208",
+    "receipt_email": "billing@acme-corp.com",
+    "automatic_payment_methods": {
+      "enabled": true
+    }
+  }'`;
+
 export const PRESETS: Preset[] = [
   {
     id: 'stripe',
@@ -102,6 +116,13 @@ export const PRESETS: Preset[] = [
     badge: 'API Intent',
     description: 'Nested objects, currencies, status enums & charges',
     data: STRIPE_PAYMENT_SAMPLE
+  },
+  {
+    id: 'curl-post',
+    name: 'cURL Command',
+    badge: 'Terminal Ingestion',
+    description: 'Multi-line bash cURL with headers and JSON payload',
+    data: CURL_STRIPE_SAMPLE
   },
   {
     id: 'weather',
@@ -125,3 +146,4 @@ export const PRESETS: Preset[] = [
     data: ECOMMERCE_ORDER_SAMPLE
   }
 ];
+
