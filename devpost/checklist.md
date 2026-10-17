@@ -29,7 +29,7 @@ Build mode: fast
   Learner check: Open the Chaos Runner drawer in the browser, click "Run Chaos Mock", and observe simulated latency and live green/red diagnostic badges.
   Commit: `feat(chaos): implement in-browser mock and chaos fuzzer sandbox`
 
-- [ ] **3. AI Agent Structured Output Generators (OpenAI Strict & Anthropic Claude Tools) & Presets**
+- [x] **3. AI Agent Structured Output Generators (OpenAI Strict & Anthropic Claude Tools) & Presets**
   Becomes usable: Multi-tab code studio expands to 4 targets: OpenAI Strict Mode (`strict: true`, recursive `additionalProperties: false`, required property enforcement) and Anthropic Claude tool specs, plus full 4-preset catalog.
   Why now: Bridges Web APIs to AI Agent Tool Calling and provides the 4 zero-typing presets needed for the judge demo walk-through.
   PRD ref: `prd.md > 3. Multi-Target Code Generation`, `prd.md > 5. Instant 1-Click Presets`
