@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContractForge — PRD Companion</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #090a0f;
+      --card-bg: #11131c;
+      --border: #23283b;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --primary: #6366f1;
+      --accent: #10b981;
+      --danger: #f43f5e;
+      --sky: #38bdf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 960px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 2rem; }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: rgba(99, 102, 241, 0.15);
+      color: var(--primary);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      margin-bottom: 0.75rem;
+    }
+    h1 { font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card h2 {
+      font-size: 1.3rem;
+      color: #fff;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .diagram-box {
+      background: #0d1117;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+      text-align: center;
+    }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .feature-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .feature-card h3 { font-size: 1rem; color: var(--sky); margin-bottom: 0.5rem; }
+    ul { padding-left: 1.25rem; }
+    li { margin-bottom: 0.35rem; color: #cbd5e1; font-size: 0.95rem; }
+    .tag { display: inline-block; font-size: 0.75rem; padding: 0.15rem 0.4rem; border-radius: 4px; font-weight: 600; margin-right: 0.25rem; }
+    .tag-green { background: rgba(16, 185, 129, 0.2); color: var(--accent); }
+    .tag-blue { background: rgba(56, 189, 248, 0.2); color: var(--sky); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Devpost Build With AI: Basics — Approved PRD</div>
+      <h1>ContractForge — Product Requirements</h1>
+      <p style="color: var(--text-muted);">Interactive Architecture & Product Journey Visualizer</p>
+    </header>
+
+    <div class="card">
+      <h2>🗺️ User Journey: Arrival to Verified Contract</h2>
+      <div class="diagram-box">
+        <pre class="mermaid">
+        flowchart TD
+          A[1. Arrive at Studio\nObsidian dark-mode UI] --> B{Choose Input Mode}
+          B -->|Fast Path| C[1-Click Preset\nStripe / Weather / GitHub / E-Com]
+          B -->|Custom Path| D[Paste cURL or JSON\nRaw payload or CLI command]
+          C --> E[AST Inference Engine\nInfer Types & Match Regexes]
+          D --> E
+          E --> F[Multi-Target Code Generation]
+          F --> G1[TypeScript Interface]
+          F --> G2[Zod Runtime Validator]
+          F --> G3[OpenAI Strict Tool Spec]
+          F --> G4[Anthropic Claude Spec]
+          E --> H[Interactive Sandbox\nRun Chaos Mock]
+          H --> I[Execute Live Zod SafeParse\nHappy Path: 200 OK | Chaos: 422 Errors]
+          I --> J[1-Click Copy & Export]
+        </pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📦 Core Capabilities & Targets</h2>
+      <div class="grid-4">
+        <div class="feature-card">
+          <h3>TypeScript Target</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Pure idiomatic types</p>
+          <ul>
+            <li>PascalCase naming</li>
+            <li>Nested sub-interfaces</li>
+            <li>Optional fields (<code>?</code>)</li>
+            <li>Union resolution</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3>Zod Target</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Runtime verification</p>
+          <ul>
+            <li><code>z.string().datetime()</code></li>
+            <li><code>z.string().uuid()</code></li>
+            <li><code>z.string().email()</code></li>
+            <li><code>z.string().url()</code></li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3>OpenAI Strict Tool</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Structured Outputs</p>
+          <ul>
+            <li><code>strict: true</code> flag</li>
+            <li>All keys in <code>required</code></li>
+            <li>Nullable union fallbacks</li>
+            <li>Zero hallucinations</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3>Chaos Mock Sandbox</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Live In-Browser Fuzzer</p>
+          <ul>
+            <li>Happy-path generator</li>
+            <li>Type corruption fuzzer</li>
+            <li>Boundary violation test</li>
+            <li>Status 200 vs 422 logs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>mermaid.initialize({ startOnLoad: true, theme: 'dark' });</script>
+</body>
+</html>
