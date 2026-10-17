@@ -1,6 +1,6 @@
 ---
 doc: scope
-status: draft
+status: approved
 ---
 
 # ContractForge — The Universal API & Agent Schema Studio
