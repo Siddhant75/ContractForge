@@ -140,14 +140,23 @@ export function generateFuzzTestCases(ast: AstNode): FuzzTestCase[] {
     });
 
     // 3. Boundary / semantic violation
-    const semanticProp = ast.properties.find(p => p.type.kind === 'primitive' && p.type.format !== 'none') || targetProp;
+    const hasSemanticProp = ast.properties.find(p => p.type.kind === 'primitive' && p.type.format !== 'none');
+    const boundaryProp = hasSemanticProp || targetProp;
     const boundaryPayload = { ...(happyPath as Record<string, unknown>) };
-    boundaryPayload[semanticProp.name] = 'MALFORMED_REGEX_PATTERN_VALUE_@@@';
+    
+    if (hasSemanticProp) {
+      boundaryPayload[boundaryProp.name] = 'MALFORMED_REGEX_PATTERN_VALUE_@@@';
+    } else {
+      // Injects invalid structural type if no regex format is present
+      boundaryPayload[boundaryProp.name] = ['__UNEXPECTED_ARRAY_OVERFLOW__'];
+    }
 
     testCases.push({
       id: 'tc_boundary_violation',
-      name: `Boundary Violation on [${semanticProp.name}]`,
-      description: `Injects malformed format into '${semanticProp.name}' to verify regex guards`,
+      name: `Boundary Violation on [${boundaryProp.name}]`,
+      description: hasSemanticProp
+        ? `Injects malformed format into '${boundaryProp.name}' to verify regex guards`
+        : `Injects structural overflow into '${boundaryProp.name}' to verify boundary enforcement`,
       type: 'boundary_violation',
       payload: boundaryPayload,
       simulatedStatus: 422,

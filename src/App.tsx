@@ -112,10 +112,10 @@ export function App() {
 
           <button
             onClick={handleRunChaosSuite}
-            disabled={!currentAst}
+            disabled={!currentAst || isFuzzRunning}
             className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-sm disabled:opacity-40"
           >
-            <Zap className="w-3.5 h-3.5 text-emerald-200" />
+            <Zap className={`w-3.5 h-3.5 text-emerald-200 ${isFuzzRunning ? 'animate-spin' : ''}`} />
             Run Chaos Mock
           </button>
         </div>
@@ -150,7 +150,7 @@ export function App() {
           <Zap className="w-3.5 h-3.5 text-emerald-400" />
           <span>{isRunnerOpen ? 'Hide Chaos Runner' : 'Show Chaos Runner'}</span>
           {fuzzTestCases.length > 0 && (
-            <span className="ml-1 px-1.5 py-0.2 rounded text-[10px] font-mono bg-obsidian-950 text-emerald-400">
+            <span className="ml-1 px-1.5 py-0.5 rounded text-[10px] font-mono bg-obsidian-950 text-emerald-400">
               {fuzzTestCases.filter(t => t.passed).length}/{fuzzTestCases.length} Passed
             </span>
           )}
