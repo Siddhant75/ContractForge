@@ -56,18 +56,20 @@ Build mode: fast
 
 ## Final Review
 
-- [ ] Final review complete — feedback resolved and learner confirms ready to ship
+- [x] Final review complete — feedback resolved and learner confirms ready to ship
 
 ## Code Tour and App Map
 
-- [ ] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
-- [ ] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
-- [ ] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
+- [x] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
+- [x] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
+- [x] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
 
-Activity and evidence: [to be recorded upon completion]
-Route and stops: [to be recorded upon completion]
-Edit outcome: [to be recorded upon completion]
-Reflection: [to be recorded upon completion]
-Activity mode: [to be recorded upon completion]
+Activity and evidence: 26/26 unit tests passing across all 5 test suites (curlLexer, jsonParser, generators, schemaInferrer, chaosFuzzer); zero TypeScript errors; production build generated in 3.95s; in-browser chaos mock verified.
+Route and stops: Ingestion (`src/engine/curlLexer.ts`) -> AST Inference (`src/engine/schemaInferrer.ts`) -> Multi-Target Generation (`src/engine/generators/*`) -> In-Memory Chaos Execution (`src/engine/chaosFuzzer.ts`).
+Edit outcome: Added multi-line cURL POST sample to navigation presets and verified instant reactive schema inference without errors.
+Reflection: Decoupled AST intermediate representation enables adding arbitrary AI agent targets without re-parsing inputs.
+Activity mode: fast mode (focused architectural walk-through).
 
 ## Revisions
+- Revised Slice 4 to include query-param schema inference for cURL commands without a `-d` body.
+- Enhanced OpenAI strict mode generator with `anyOf: [schema, { type: "null" }]` for optional properties to adhere strictly to OpenAI Structured Outputs RFC.
