@@ -39,7 +39,7 @@ Build mode: fast
   Learner check: Toggle between OpenAI and Anthropic tabs in browser, verify strict JSON formatting, and copy tool definitions for agent workflows.
   Commit: `feat(generators): implement openai strict and anthropic tool generators with presets`
 
-- [ ] **4. Resilient Ingestion: Multi-Line cURL Lexer & Malformed JSON Auto-Sanitizer**
+- [x] **4. Resilient Ingestion: Multi-Line cURL Lexer & Malformed JSON Auto-Sanitizer**
   Becomes usable: Ingestion studio supports complex bash/cmd cURL commands (flags, headers, queries, bodies) and auto-recovers malformed JSON (trailing commas, quotes) with inline UI alerts and auto-fix action.
   Why now: Hardens the input layer against real-world developer inputs and edge cases, ensuring judges cannot break the app with messy copy-pastes.
   PRD ref: `prd.md > 1. Input Ingestion & cURL Lexer`, `prd.md > States and Boundaries`
@@ -52,7 +52,7 @@ Build mode: fast
 ## Hands-on Checkpoints
 
 - [x] Early usable behavior explored — Slice 2 completed (Unique Kernel live and interactive in the browser!)
-- [ ] Final kick-the-tires exploration and feedback completed — Slice 4 completed (Full studio with resilient cURL and all presets)
+- [x] Final kick-the-tires exploration and feedback completed — Slice 4 completed (Full studio with resilient cURL and all presets)
 
 ## Final Review
 
