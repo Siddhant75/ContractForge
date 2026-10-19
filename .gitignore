@@ -20,6 +20,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Playwright Test Runs
+test-results/
+playwright-report/
+
 # Editor directories
 .vscode/
 .idea/
