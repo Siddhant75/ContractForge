@@ -109,22 +109,53 @@ ContractForge is not only a visual web studio—it is also a headless **Model Co
 2. **`fuzz_contract`**: Compiles an in-memory Zod schema from an endpoint and runs live chaos mutations (200 OK baseline vs. 422 REJECTED errors) to identify mandatory parameters before the agent calls external APIs.
 3. **`dynamic_tool_register`**: Synthesizes ready-to-register tool definitions with custom names and descriptions, allowing an agent to dynamically equip itself with new tools at runtime.
 
-### Connect ContractForge to Claude Desktop, Cursor, or Antigravity:
+### Connect ContractForge to Claude Desktop, Cursor, or AI Agents:
 
-Add to your `claude_desktop_config.json` or `.cursor/mcp.json`:
+Because ContractForge registers `"bin": { "contractforge-mcp": "./bin/contractforge-mcp.js" }`, you can connect it with **zero path headaches**:
 
+#### Option 1: Global Registration via `npm link` (Recommended — Zero File Paths)
+In your cloned repository root, run once:
+```bash
+npm link
+```
+Then add to your `claude_desktop_config.json` or `.cursor/mcp.json`:
+```json
+{
+  "mcpServers": {
+    "contractforge": {
+      "command": "contractforge-mcp"
+    }
+  }
+}
+```
+*Zero file paths, zero drive letters, and works uniformly across Windows, macOS, and Linux.*
+
+#### Option 2: Project-Local Workspace or Agent Setup
+For autonomous agents (Claude Code, Antigravity) running inside the workspace:
 ```json
 {
   "mcpServers": {
     "contractforge": {
       "command": "node",
-      "args": ["/path/to/ContractForge/bin/contractforge-mcp.js"]
+      "args": ["./bin/contractforge-mcp.js"]
     }
   }
 }
 ```
+*(Or invoke `npm run mcp` directly).*
 
-*(Replace `/path/to/ContractForge` with the actual path to your cloned repository, or run `npm run mcp` directly).*
+#### Option 3: Production Registry Distribution (`npx`)
+When published to npm, neither human nor agent needs to clone the repository:
+```json
+{
+  "mcpServers": {
+    "contractforge": {
+      "command": "npx",
+      "args": ["-y", "contractforge-mcp"]
+    }
+  }
+}
+```
 
 Now any connected agent can dynamically prompt:
 > *"I need to integrate with this Stripe endpoint. Run `infer_contract` on this cURL and `fuzz_contract` to verify which parameters are mandatory."*

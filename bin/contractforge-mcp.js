@@ -6,10 +6,11 @@ import { dirname, resolve } from 'node:path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const serverPath = resolve(__dirname, '../src/mcp/server.ts');
+const tsxLoader = import.meta.resolve('tsx');
 
 const child = spawn(
   process.execPath,
-  ['--import', 'tsx', serverPath, ...process.argv.slice(2)],
+  ['--import', tsxLoader, serverPath, ...process.argv.slice(2)],
   {
     stdio: 'inherit',
     env: process.env,
