@@ -24,7 +24,7 @@ npm run dev
 - **1-Click Zero-Typing Demo:** Once loaded, click the **"Stripe Payment"** or **"cURL Command"** preset pills in the top bar.
 - **Run the Chaos Mock:** Click the green **"Run Chaos Mock"** button. Watch in-browser compiled schemas validate compliant payloads (`200 OK`) and intercept deterministic chaos mutations (`422 REJECTED`) in `< 20ms`.
 - **Run Full Verification:**
-  - `npm run test` (26 unit tests passing across all 5 test engines in `< 8s`)
+  - `npm run test` (32 unit tests passing across all 6 test engines in `< 8s`)
   - `npm run test:e2e` (automated Playwright browser journey verifying UI, clicks, and contracts)
 - **Demo Video Walkthrough:** Check [`recordings/demo-walkthrough.webm`](recordings/demo-walkthrough.webm) for the complete 1280x720 session capture.
 
@@ -99,6 +99,36 @@ Generates Claude-compatible tool definitions conforming to JSON Schema Draft 7 w
 
 ---
 
+## 🤖 Model Context Protocol (MCP) Server for AI Agents
+
+ContractForge is not only a visual web studio—it is also a headless **Model Context Protocol (MCP) Server**, allowing autonomous AI agents (in **Claude Code, Antigravity, Cursor, or Claude Desktop**) to synthesize and verify API tools on the fly.
+
+### Exposed MCP Tools:
+
+1. **`infer_contract`**: Pass raw cURL or JSON $\to$ returns mathematically compliant OpenAI Strict Mode, Claude Tool, TypeScript, or Zod schemas.
+2. **`fuzz_contract`**: Compiles an in-memory Zod schema from an endpoint and runs live chaos mutations (200 OK baseline vs. 422 REJECTED errors) to identify mandatory parameters before the agent calls external APIs.
+3. **`dynamic_tool_register`**: Synthesizes ready-to-register tool definitions with custom names and descriptions, allowing an agent to dynamically equip itself with new tools at runtime.
+
+### Connect ContractForge to Claude Desktop, Cursor, or Antigravity:
+
+Add to your `claude_desktop_config.json` or `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "contractforge": {
+      "command": "node",
+      "args": ["d:/Build-with-AI-hackathon/bin/contractforge-mcp.js"]
+    }
+  }
+}
+```
+
+Now any connected agent can dynamically prompt:
+> *"I need to integrate with this Stripe endpoint. Run `infer_contract` on this cURL and `fuzz_contract` to verify which parameters are mandatory."*
+
+---
+
 ## 🛠️ Architecture & Technical Implementation
 
 ContractForge is built as a **zero-backend, 100% client-side Single Page Application**:
@@ -106,7 +136,8 @@ ContractForge is built as a **zero-backend, 100% client-side Single Page Applica
 * **Core Framework:** React 19 + TypeScript + Vite
 * **Styling & Theme:** Tailwind CSS (Obsidian dark palette: `#090a0f`, elevated zinc cards, emerald & indigo accents)
 * **Schema Validation & Compilation:** Zod 3.24
-* **Unit Testing Suite:** Vitest (26/26 unit tests passing across all engines)
+* **AI Agent Protocol:** Model Context Protocol (MCP) TypeScript SDK (`@modelcontextprotocol/sdk`)
+* **Unit Testing Suite:** Vitest (32/32 unit tests passing across all engines)
 * **E2E Browser Automation:** Playwright (Google Chrome automated test, 7 screenshots, session video recording)
 * **Icons:** Lucide React
 * **Hosting / Cost:** $0.00. No servers, no databases, no paid external APIs.
@@ -116,11 +147,14 @@ ContractForge is built as a **zero-backend, 100% client-side Single Page Applica
 ## 🧪 Verification & Test Suite
 
 ```bash
-# Run 26 unit tests in Vitest (< 8 seconds)
+# Run 32 unit tests in Vitest (< 8 seconds)
 npm run test
 
 # Run Playwright E2E browser automation (headed or headless)
 npm run test:e2e
+
+# Start the headless MCP server for AI agents
+npm run mcp
 
 # Build production assets (zero TS errors, ~325kB bundle)
 npm run build
