@@ -118,11 +118,13 @@ Add to your `claude_desktop_config.json` or `.cursor/mcp.json`:
   "mcpServers": {
     "contractforge": {
       "command": "node",
-      "args": ["d:/Build-with-AI-hackathon/bin/contractforge-mcp.js"]
+      "args": ["/path/to/ContractForge/bin/contractforge-mcp.js"]
     }
   }
 }
 ```
+
+*(Replace `/path/to/ContractForge` with the actual path to your cloned repository, or run `npm run mcp` directly).*
 
 Now any connected agent can dynamically prompt:
 > *"I need to integrate with this Stripe endpoint. Run `infer_contract` on this cURL and `fuzz_contract` to verify which parameters are mandatory."*

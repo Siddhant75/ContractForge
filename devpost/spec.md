@@ -207,7 +207,7 @@ export interface FuzzTestCase {
 ## File Structure
 
 ```
-d:/Build-with-AI-hackathon/
+contractforge/
 ├── .agents/                    # Devpost Learn Skills
 ├── devpost/                    # Hackathon Artifacts (scope.md, prd.md, spec.md)
 │   ├── learner-profile.md
