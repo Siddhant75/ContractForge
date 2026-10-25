@@ -77,6 +77,7 @@ All dependencies are 100% free and open-source:
 - **Hackathon Submission & Evaluation Note:**
   Submission requires both a short demo video and a public GitHub repository; deployment is optional and does not replace the video.
   - **Demo Video URL:** `https://youtu.be/MMFmMYwQRF0?si=4ygKVbPPyLM4rPo_`
+  - **Public Repository URL:** `https://github.com/Siddhant75/ContractForge`
   To record the demo, follow `prd.md > What "Working" Looks Like`:
   1. Open `http://localhost:5173`.
   2. Click the "Stripe Payment Intent" or "Weather Agent Tool" preset pill.
