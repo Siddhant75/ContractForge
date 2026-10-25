@@ -1,0 +1,32 @@
+{
+  "act1_agony": {
+    "title": "Act 1: The Agony & Real-World Pain Point",
+    "duration_sec": 24.32,
+    "file": "act1_agony.wav"
+  },
+  "act1_ingestion": {
+    "title": "Act 1: Real-World Ingestion",
+    "duration_sec": 21.65,
+    "file": "act1_ingestion.wav"
+  },
+  "act2_query_autofix": {
+    "title": "Act 2: Query-Param Schemas & Resilient Auto-Sanitizer",
+    "duration_sec": 19.98,
+    "file": "act2_query_autofix.wav"
+  },
+  "act3_multitarget": {
+    "title": "Act 3: Deep Schemas & 4 Multi-Target Generators",
+    "duration_sec": 32.45,
+    "file": "act3_multitarget.wav"
+  },
+  "act4_chaos_fuzzer": {
+    "title": "Act 4: The Unique Kernel \u2014 In-Browser Chaos Mock Runner",
+    "duration_sec": 34.0,
+    "file": "act4_chaos_fuzzer.wav"
+  },
+  "act5_outro": {
+    "title": "Act 5: 1-Click Clipboard & Autonomous MCP Wrap",
+    "duration_sec": 20.57,
+    "file": "act5_outro.wav"
+  }
+}

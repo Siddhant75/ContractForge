@@ -3,10 +3,10 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 test.describe('ContractForge Cinematic Developer-Flow Demo Video', () => {
-  // Allow up to 4 minutes for deliberate, presentation-paced recording
-  test.setTimeout(240 * 1000);
+  // Allow up to 5 minutes for full voiceover-matched presentation recording
+  test.setTimeout(300 * 1000);
 
-  test('Record authentic developer workflow matching hackathon script', async ({ page }) => {
+  test('Record authentic developer workflow precisely timed to Kokoro voiceover', async ({ page }) => {
     // 0. Inject Virtual Mouse Cursor & Click Ripple Helper
     await page.addInitScript(() => {
       const cursor = document.createElement('div');
@@ -65,20 +65,20 @@ test.describe('ContractForge Cinematic Developer-Flow Demo Video', () => {
     });
 
     // ─────────────────────────────────────────────────────────────
-    // ACT 1: THE AGONY & REAL-WORLD INGESTION (0:00 – 0:30)
+    // ACT 1: THE AGONY & REAL-WORLD INGESTION (~46s matching audio)
     // ─────────────────────────────────────────────────────────────
     await page.goto('/');
     await page.waitForLoadState('networkidle');
-    await page.waitForTimeout(3000); // 3s hold: Let viewer absorb the clean Obsidian studio
+    await page.waitForTimeout(4000); // 4s hold: Viewer takes in the Obsidian studio while voiceover introduces agent pain
 
-    // Developer clears editor to bring in a real-world API
+    // Developer clears editor to demonstrate bringing in external API
     const clearBtn = page.getByRole('button', { name: /Clear/i });
     await clearBtn.hover();
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(600);
     await clearBtn.click();
-    await page.waitForTimeout(1500);
+    await page.waitForTimeout(3000); // 3s hold on empty canvas while voiceover discusses boilerplate typing
 
-    // Developer pastes a real-world multi-line cURL command copied from Stripe API documentation
+    // Developer pastes a real-world multi-line cURL command copied from Stripe documentation
     const editor = page.locator('textarea');
     await editor.click();
     const realisticCurl = `curl -X POST https://api.stripe.com/v1/payment_intents \\
@@ -97,10 +97,11 @@ test.describe('ContractForge Cinematic Developer-Flow Demo Video', () => {
   }'`;
     
     await editor.fill(realisticCurl);
-    await page.waitForTimeout(4500); // 4.5s hold: Viewer sees cURL badge, POST method, and target URL light up
+    // Dwell for remainder of Act 1 (~35s): viewer sees POST badge, headers stripped, target URL
+    await page.waitForTimeout(35000);
 
     // ─────────────────────────────────────────────────────────────
-    // ACT 2: QUERY-PARAM SCHEMA INDUCTION & AUTO-SANITIZER (0:30 – 0:50)
+    // ACT 2: QUERY-PARAM SCHEMAS & RESILIENT AUTO-SANITIZER (~20s matching audio)
     // ─────────────────────────────────────────────────────────────
     // Demonstrate GET request with query-string parameters and NO request body
     const queryOnlyCurl = `curl -X GET "https://api.github.com/search/repositories?q=machine-learning&sort=stars&order=desc&per_page=25&active=true" \\
@@ -108,110 +109,110 @@ test.describe('ContractForge Cinematic Developer-Flow Demo Video', () => {
     
     await editor.click();
     await editor.fill(queryOnlyCurl);
-    await page.waitForTimeout(4000); // 4s hold: Viewer sees query params coerced to schema (per_page: 25 -> number, active -> boolean)
+    await page.waitForTimeout(7000); // 7s hold: Voiceover explains query parameter extraction into root schema
 
     // Demonstrate Resilient Auto-Sanitizer on corrupted developer JSON
     const brokenJson = `{\n  // Corrupted developer payload from Slack\n  name: "ContractForge Engine",\n  active: true,\n  tags: ["ast", "zod", "openai",],\n  version: 1,\n}`;
     await editor.click();
     await editor.fill(brokenJson);
-    await page.waitForTimeout(3000); // 3s hold: Viewer sees amber alert banner "Auto-sanitized syntax issues"
+    await page.waitForTimeout(4000); // 4s hold: Viewer sees amber alert banner "Auto-sanitized syntax issues"
 
     // Click "Apply Clean JSON"
     const applyCleanBtn = page.getByRole('button', { name: /Apply Clean JSON/i });
     if (await applyCleanBtn.isVisible()) {
       await applyCleanBtn.hover();
-      await page.waitForTimeout(500);
+      await page.waitForTimeout(600);
       await applyCleanBtn.click();
-      await page.waitForTimeout(3000); // 3s hold: Viewer sees syntax repaired and cleanly formatted
+      await page.waitForTimeout(8000); // 8s hold: Viewer sees syntax repaired and clean formatting
     }
 
     // ─────────────────────────────────────────────────────────────
-    // ACT 3: DEEP SCHEMAS & 4 MULTI-TARGET GENERATORS (0:50 – 1:20)
+    // ACT 3: DEEP SCHEMAS & 4 MULTI-TARGET GENERATORS (~33s matching audio)
     // ─────────────────────────────────────────────────────────────
     // Load Stripe Payment preset for deep production schema demonstration
     const stripePresetBtn = page.getByRole('button', { name: /Stripe Payment/i });
     await stripePresetBtn.hover();
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(600);
     await stripePresetBtn.click();
-    await page.waitForTimeout(3500); // 3.5s hold: 25-field deep schema
+    await page.waitForTimeout(4000); // 4s hold: 25-field deep schema
 
     // 3.1 Tour TypeScript Tab
     const tsTab = page.getByRole('button', { name: /TypeScript/i });
     await tsTab.hover();
-    await page.waitForTimeout(350);
+    await page.waitForTimeout(400);
     await tsTab.click();
-    await page.waitForTimeout(3500); // 3.5s hold: Idiomatic TypeScript interfaces
+    await page.waitForTimeout(5000); // 5s hold: Idiomatic TypeScript interfaces
 
     // 3.2 Tour Zod Schema Tab
     const zodTab = page.getByRole('button', { name: /Zod Schema/i });
     await zodTab.hover();
-    await page.waitForTimeout(350);
+    await page.waitForTimeout(400);
     await zodTab.click();
-    await page.waitForTimeout(4500); // 4.5s hold: Semantic validators (.datetime(), .uuid(), .email())
+    await page.waitForTimeout(6000); // 6s hold: Semantic validators (.datetime(), .uuid(), .email())
 
     // 3.3 Tour OpenAI (Strict) Tab — The Frontier Agent Superpower
     const openAiTab = page.getByRole('button', { name: /OpenAI \(Strict\)/i });
     await openAiTab.hover();
-    await page.waitForTimeout(350);
+    await page.waitForTimeout(400);
     await openAiTab.click();
-    await page.waitForTimeout(4000); // Pause on top of schema
+    await page.waitForTimeout(5000); // Pause on top of schema
 
-    // Subtle scroll down through the OpenAI strict schema
+    // Subtle smooth scroll down through the OpenAI strict schema
     const codeArea = page.locator('pre code, .font-mono').last();
     if (await codeArea.isVisible()) {
-      await codeArea.evaluate((el) => el.scrollBy({ top: 180, behavior: 'smooth' }));
-      await page.waitForTimeout(3500); // 3.5s hold: Highlight recursive additionalProperties: false & required null-unions
+      await codeArea.evaluate((el) => el.scrollBy({ top: 220, behavior: 'smooth' }));
+      await page.waitForTimeout(8000); // 8s hold: Highlight recursive additionalProperties: false & required null-unions
     }
 
     // 3.4 Tour Anthropic Claude Tool Tab
     const claudeTab = page.getByRole('button', { name: /Anthropic Tool/i });
     await claudeTab.hover();
-    await page.waitForTimeout(350);
+    await page.waitForTimeout(400);
     await claudeTab.click();
-    await page.waitForTimeout(3500); // 3.5s hold: Claude Draft-7 tool spec
+    await page.waitForTimeout(4500); // 4.5s hold: Claude Draft-7 tool spec
 
     // ─────────────────────────────────────────────────────────────
-    // ACT 4: THE UNIQUE KERNEL — IN-BROWSER CHAOS MOCK RUNNER (1:20 – 1:45)
+    // ACT 4: THE UNIQUE KERNEL — IN-BROWSER CHAOS MOCK RUNNER (~34s matching audio)
     // ─────────────────────────────────────────────────────────────
     const runChaosBtn = page.getByRole('button', { name: /Run Chaos Mock/i }).first();
     await runChaosBtn.hover();
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(600);
     await runChaosBtn.click();
-    await page.waitForTimeout(1200); // Drawer slides up smoothly
+    await page.waitForTimeout(1500); // Drawer slides up smoothly
 
     // Wait for simulated execution latency to complete and status badges to illuminate
     const okBadge = page.getByText('200 OK').first();
     await expect(okBadge).toBeVisible({ timeout: 10000 });
-    await page.waitForTimeout(3000); // 3s hold on glowing green 200 OK baseline
+    await page.waitForTimeout(6000); // 6s hold on glowing green 200 OK baseline while voiceover explains in-memory compile
 
     // Expand the first rejected chaos mutation card to inspect live diagnostics
     const rejectedBadge = page.getByText('422 REJECTED').first();
     await rejectedBadge.hover();
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(600);
     await rejectedBadge.click();
-    await page.waitForTimeout(5500); // 5.5s pause: Viewer reads exact diagnostic path (id: Required)
+    await page.waitForTimeout(20000); // 20s hold: Viewer reads exact diagnostic path (id: Required) while voiceover details mutation catching
 
     // Close the drawer smoothly
     const closeDrawerBtn = page.locator('div.fixed button:has(svg.lucide-x)').first();
     if (await closeDrawerBtn.isVisible()) {
       await closeDrawerBtn.hover();
-      await page.waitForTimeout(400);
+      await page.waitForTimeout(500);
       await closeDrawerBtn.click();
-      await page.waitForTimeout(1500);
+      await page.waitForTimeout(3000);
     }
 
     // ─────────────────────────────────────────────────────────────
-    // ACT 5: 1-CLICK CLIPBOARD & AUTONOMOUS MCP AGENT WRAP (1:45 – 2:00)
+    // ACT 5: 1-CLICK CLIPBOARD & AUTONOMOUS MCP AGENT WRAP (~22s matching audio)
     // ─────────────────────────────────────────────────────────────
     // Click Copy Code to show animated checkmark confirmation
     const copyBtn = page.getByRole('button', { name: /Copy Code/i });
     await copyBtn.hover();
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(600);
     await copyBtn.click();
-    await page.waitForTimeout(4000); // 4s hold showing green checkmark "Copied!"
+    await page.waitForTimeout(7000); // 7s hold showing green checkmark "Copied!"
 
-    // Final closing hold on the studio with footer status visible
-    await page.waitForTimeout(3500);
+    // Final closing hold on the studio with footer status and MCP badge visible
+    await page.waitForTimeout(14000); // 14s hold while voiceover delivers closing open-source statement and MCP wrap
 
     // Finalize video stream cleanly for Windows
     const video = page.video();

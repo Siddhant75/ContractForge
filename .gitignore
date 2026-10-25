@@ -53,3 +53,9 @@ $RECYCLE.BIN/
 scratch/
 tmp/
 temp/
+
+# Intermediate raw recording captures & large wave files
+recordings/*.wav
+recordings/audio_segments/*.wav
+recordings/demo-video-presentation.webm
+recordings/ContractForge-Demo-Final.webm

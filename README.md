@@ -34,7 +34,7 @@ npm run dev
 - **Run Full Verification:**
   - `npm run test` (32 unit tests passing across all 6 test engines in `< 8s`)
   - `npm run test:e2e` (automated Playwright browser journey verifying UI, clicks, and contracts)
-- **Demo Video Walkthrough:** Check [`recordings/demo-walkthrough.webm`](recordings/demo-walkthrough.webm) for the complete 1280x720 session capture.
+- **Full Demo Video Walkthrough:** Check [`recordings/ContractForge-Demo-Final.mp4`](recordings/ContractForge-Demo-Final.mp4) for the complete 1280x720 demonstration video with synchronized Kokoro neural AI voiceover.
 
 ---
 
