@@ -34,7 +34,9 @@ npm run dev
 - **Run Full Verification:**
   - `npm run test` (32 unit tests passing across all 6 test engines in `< 8s`)
   - `npm run test:e2e` (automated Playwright browser journey verifying UI, clicks, and contracts)
-- **Full Demo Video Walkthrough:** Check [`recordings/ContractForge-Demo-Final.mp4`](recordings/ContractForge-Demo-Final.mp4) for the complete 1280x720 demonstration video with synchronized Kokoro neural AI voiceover.
+- **Full Demo Video Walkthrough:**
+  - 📺 **Watch on YouTube:** [ContractForge Official Demo (YouTube)](https://youtu.be/MMFmMYwQRF0?si=4ygKVbPPyLM4rPo_) (02:36 with synchronized Kokoro neural AI voiceover).
+  - 📦 **Offline Master Video:** [`recordings/ContractForge-Demo-Final.mp4`](recordings/ContractForge-Demo-Final.mp4) (H.264 / AAC 720p, 4.75 MB).
 
 ---
 
@@ -226,7 +228,7 @@ npm run build
 ## 📋 Devpost Learn Planning Artifacts
 
 ContractForge strictly followed the Devpost Learn Hackathon lifecycle:
-* [learner-profile.md](devpost/learner-profile.md) *(strictly gitignored for privacy)*
+* `devpost/learner-profile.md` *(kept local & strictly gitignored for personal learner privacy)*
 * [scope.md](devpost/scope.md) & [scope.html](devpost/scope.html) *(approved)*
 * [prd.md](devpost/prd.md) & [prd.html](devpost/prd.html) *(approved)*
 * [spec.md](devpost/spec.md) & [spec.html](devpost/spec.html) *(approved)*

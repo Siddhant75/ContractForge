@@ -3,8 +3,10 @@ import sys
 import json
 from pathlib import Path
 
-# Ensure espeak-ng DLL is found
-os.environ["PHONEMIZER_ESPEAK_LIBRARY"] = r"C:\Program Files\eSpeak NG\libespeak-ng.dll"
+# Ensure espeak-ng DLL is found on Windows if installed
+espeak_win_path = r"C:\Program Files\eSpeak NG\libespeak-ng.dll"
+if os.path.exists(espeak_win_path):
+    os.environ["PHONEMIZER_ESPEAK_LIBRARY"] = espeak_win_path
 
 import numpy as np
 import soundfile as sf
