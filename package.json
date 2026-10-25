@@ -2,6 +2,7 @@
   "name": "contractforge",
   "private": true,
   "version": "1.0.0",
+  "license": "MIT",
   "type": "module",
   "bin": {
     "contractforge-mcp": "./bin/contractforge-mcp.js"

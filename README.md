@@ -6,7 +6,7 @@
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](src/App.tsx)
 [![MCP Ready](https://img.shields.io/badge/MCP-Server%20Ready-orange?style=flat-square)](bin/contractforge-mcp.js)
 [![Zero Backend Cost](https://img.shields.io/badge/Cost-%240.00%20(Zero%20Backend)-success?style=flat-square)](README.md)
-[![License](https://img.shields.io/badge/License-MIT-purple?style=flat-square)](README.md)
+[![License](https://img.shields.io/badge/License-MIT-purple?style=flat-square)](LICENSE)
 
 > **Transform raw APIs and terminal cURLs into strict TypeScript, Zod, and AI Agent tool contracts in milliseconds—tested live with an in-browser, zero-backend Chaos Mock Runner.**
 >
@@ -239,4 +239,4 @@ ContractForge strictly followed the Devpost Learn Hackathon lifecycle:
 
 ## 📄 License
 
-MIT Open Source License. Built for the Devpost **Build With AI: Basics** Hackathon.
+Distributed under the [MIT Open Source License](LICENSE). Built for the Devpost **Build With AI: Basics** Hackathon.
