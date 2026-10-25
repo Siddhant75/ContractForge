@@ -11,8 +11,10 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:e2e": "playwright test",
-    "test:e2e:headed": "playwright test --headed",
+    "test:e2e": "playwright test e2e/contractforge.spec.ts",
+    "test:e2e:headed": "playwright test e2e/contractforge.spec.ts --headed",
+    "demo:record": "playwright test e2e/demoRecorder.spec.ts",
+    "demo:record:headed": "playwright test e2e/demoRecorder.spec.ts --headed",
     "mcp": "node bin/contractforge-mcp.js"
   },
   "dependencies": {

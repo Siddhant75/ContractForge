@@ -205,8 +205,14 @@ ContractForge is built as a **zero-backend, 100% client-side Single Page Applica
 # Run 32 unit tests in Vitest (< 8 seconds)
 npm run test
 
-# Run Playwright E2E browser automation (headed or headless)
+# Run Playwright E2E browser automation (fast ~25s verification)
 npm run test:e2e
+
+# Record full 2-minute presentation demo video matching Devpost script
+npm run demo:record
+
+# Or watch the automated demo live on screen for voiceover narration
+npm run demo:record:headed
 
 # Start the headless MCP server for AI agents
 npm run mcp
