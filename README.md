@@ -1,5 +1,13 @@
 # ContractForge — The Universal API & Agent Schema Studio
 
+[![Vitest Tests](https://img.shields.io/badge/tests-32%20passing-emerald?style=flat-square&logo=vitest)](tests/)
+[![Playwright E2E](https://img.shields.io/badge/Playwright-E2E%20Verified-blue?style=flat-square&logo=playwright)](e2e/contractforge.spec.ts)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=flat-square&logo=typescript&logoColor=white)](tsconfig.json)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](src/App.tsx)
+[![MCP Ready](https://img.shields.io/badge/MCP-Server%20Ready-orange?style=flat-square)](bin/contractforge-mcp.js)
+[![Zero Backend Cost](https://img.shields.io/badge/Cost-%240.00%20(Zero%20Backend)-success?style=flat-square)](README.md)
+[![License](https://img.shields.io/badge/License-MIT-purple?style=flat-square)](README.md)
+
 > **Transform raw APIs and terminal cURLs into strict TypeScript, Zod, and AI Agent tool contracts in milliseconds—tested live with an in-browser, zero-backend Chaos Mock Runner.**
 >
 > Handwritten schemas for Autonomous Agent function calling are notoriously fragile. A single omitted `additionalProperties: false` or missing required null-union crashes OpenAI Strict Mode, while writing mock test harnesses takes hours. ContractForge eliminates this agony with a 100% client-side, zero-latency schema studio and edge-case fuzzer.
@@ -47,6 +55,20 @@ npm run dev
 1. **The LLM Tool Calling Fragility Trap:** Frontier AI agent platforms (OpenAI Structured Outputs, Anthropic Claude Tools) require unforgiving schema specifications. A single missing field in `required`, or an omitted recursive `additionalProperties: false`, causes API rejections and agent loop failures.
 2. **The "Dirty Input" Reality:** Real developers copy raw cURLs from Chrome DevTools with shell escapes (`\`), authentication headers, trailing commas, and unquoted keys. Traditional JSON tools throw syntax errors and crash.
 3. **The Mocking Tax:** Verifying that a generated contract handles edge cases traditionally requires deploying a mock server or writing boilerplate test harnesses. ContractForge compiles runtime validation schemas **directly in browser memory** and synthesizes edge-case mutations on demand.
+
+---
+
+## 🥊 Why ContractForge? (The "Zero-OpenAPI" Advantage)
+
+| Capability | AWS OpenAPI MCP / Speakeasy | `curlconverter` | Raw LLMs (GPT-4o / Claude) | **ContractForge** |
+| :--- | :--- | :--- | :--- | :--- |
+| **Input Source** | 5,000-line OpenAPI YAML only | Raw cURL only | Unstructured text prompts | **Any cURL, raw JSON, or query string** |
+| **Needs Pre-existing Spec?** | **YES (Strict requirement)** | No | No | **NO (Zero-OpenAPI cold start)** |
+| **Generates AI Agent Tools** | Yes (static) | No | Unreliable / Hallucinates | **Yes (OpenAI Strict + Claude Tools)** |
+| **OpenAI `strict: true` Invariant** | Schema-dependent | No | Fails on nested objects | **100% mathematically enforced** |
+| **In-Browser Chaos Fuzzer** | No | No | No | **Yes (Live 200 OK vs 422 diagnostics)** |
+| **Deterministic Code Compilation** | No (parses yaml) | Yes (to client code) | No (probabilistic guessing) | **Yes (Pure TypeScript AST compiler)** |
+| **Autonomous Agent Callable** | Over MCP | No | N/A | **Yes (`contractforge-mcp` stdio)** |
 
 ---
 
@@ -198,12 +220,14 @@ npm run build
 ## 📋 Devpost Learn Planning Artifacts
 
 ContractForge strictly followed the Devpost Learn Hackathon lifecycle:
-* [learner-profile.md](devpost/learner-profile.md) *(gitignored for privacy)*
+* [learner-profile.md](devpost/learner-profile.md) *(strictly gitignored for privacy)*
 * [scope.md](devpost/scope.md) & [scope.html](devpost/scope.html) *(approved)*
 * [prd.md](devpost/prd.md) & [prd.html](devpost/prd.html) *(approved)*
 * [spec.md](devpost/spec.md) & [spec.html](devpost/spec.html) *(approved)*
 * [checklist.md](devpost/checklist.md) *(all 4 vertical slices completed & verified)*
 * [app-map.html](devpost/app-map.html) *(visual architectural diagram & code tour)*
+* [demo-video-script.md](devpost/demo-video-script.md) *(2-minute timed demonstration script)*
+* Official ChallengePost curriculum skills preserved in `.agents/skills/`, `.claude/skills/`, and `agent/skills/` with `skills-lock.json`.
 
 ---
 
