@@ -34,9 +34,7 @@ npm run dev
 - **Run Full Verification:**
   - `npm run test` (32 unit tests passing across all 6 test engines in `< 8s`)
   - `npm run test:e2e` (automated Playwright browser journey verifying UI, clicks, and contracts)
-- **Full Demo Video Walkthrough:**
-  - 📺 **Watch on YouTube:** [ContractForge Official Demo (YouTube)](https://youtu.be/MMFmMYwQRF0?si=4ygKVbPPyLM4rPo_) (02:36 with synchronized Kokoro neural AI voiceover).
-  - 📦 **Offline Master Video:** [`recordings/ContractForge-Demo-Final.mp4`](recordings/ContractForge-Demo-Final.mp4) (H.264 / AAC 720p, 4.75 MB).
+- **📺 Official Demo Video:** [ContractForge Demo on YouTube](https://youtu.be/MMFmMYwQRF0?si=4ygKVbPPyLM4rPo_) (02:36 developer walkthrough with synchronized Kokoro neural AI voiceover).
 
 ---
 

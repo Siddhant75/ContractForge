@@ -15,8 +15,6 @@
     "test:e2e:headed": "playwright test e2e/contractforge.spec.ts --headed",
     "demo:record": "playwright test e2e/demoRecorder.spec.ts",
     "demo:record:headed": "playwright test e2e/demoRecorder.spec.ts --headed",
-    "voiceover:generate": "python scripts/generate_voiceover.py",
-    "video:merge": "python scripts/merge_video_audio.py",
     "mcp": "node bin/contractforge-mcp.js"
   },
   "dependencies": {

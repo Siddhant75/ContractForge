@@ -54,7 +54,6 @@ scratch/
 tmp/
 temp/
 
-# Intermediate raw recording captures & large media files (kept local)
-recordings/*.wav
-recordings/audio_segments/*.wav
-recordings/*.webm
+# Local Media Captures & Python Audio Generation Tooling (kept local)
+recordings/
+scripts/
