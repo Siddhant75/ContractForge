@@ -75,7 +75,9 @@ All dependencies are 100% free and open-source:
   ```
   Outputs standalone HTML/JS/CSS to `dist/`.
 - **Hackathon Submission & Evaluation Note:**
-  Submission requires both a short demo video and a public GitHub repository; deployment is optional and does not replace the video. To record the demo, follow `prd.md > What "Working" Looks Like`:
+  Submission requires both a short demo video and a public GitHub repository; deployment is optional and does not replace the video.
+  - **Demo Video URL:** `https://youtu.be/MMFmMYwQRF0?si=4ygKVbPPyLM4rPo_`
+  To record the demo, follow `prd.md > What "Working" Looks Like`:
   1. Open `http://localhost:5173`.
   2. Click the "Stripe Payment Intent" or "Weather Agent Tool" preset pill.
   3. Cycle through TypeScript, Zod, OpenAI Strict, and Anthropic code tabs.
